@@ -1,0 +1,67 @@
+# ComfyUI-Mocap — comfy-env 隔离环境声明(替代手写 install.py + Windows 轮子)
+#
+# comfy-env(pixi)会:
+#  - 匹配宿主 ComfyUI 的 torch(本机 2.11.0+cu128,原生支持 RTX 5090 / sm_120)
+#  - cuda 编译包走 PozzettiAndrea 预编译索引(pozzettiandrea.github.io/cuda-wheels),
+#    Linux 预编译、无需本地编译(正好躲开本机编译即崩的问题)
+#  - 跨平台(linux_gpu / windows_gpu 都支持)
+#
+# 说明:HaMeR 走 detectron2 较难在新 torch 上解;手部优先用 WiLoR(端到端,免 detectron2/mmcv)。
+name = "noctyra-mocap"
+python = "3.10"
+
+# CUDA 编译包(从 cuda-wheels 预编译索引按 torch/cuda/py 匹配拉取)
+[cuda]
+packages = ["pytorch3d"]
+
+# 其余依赖直接透传给 pixi 的 pypi-dependencies(对齐原 sidecar_requirements.txt)
+[pypi-dependencies]
+# 3D / SMPL
+# 构建底座(chumpy 等老包关构建隔离时需要 pip/setuptools/Cython 在环境内)
+pip = "*"
+wheel = "*"
+Cython = "==3.2.4"
+numpy = "<2"
+smplx = "==0.1.28"
+# chumpy 也移到 post_install.py 后装(源码包,构建期需 numpy)
+trimesh = "==4.12.2"
+pycolmap = "==4.0.4"
+wis3d = "==1.0.1"
+# 2D 姿态 / 检测 / 手部
+# 注:mmcv / xtcocotools / cython_bbox 是老源码包,构建时 import numpy/Cython,
+#     在 pixi 解析阶段(numpy 尚未装入 env)会失败 → 改为 env 建好后由 post_install.py
+#     用 --no-build-isolation 后装(那时 numpy<2 已就位)。详见 install.py。
+ultralytics = "==8.1.34"
+lapx = "==0.9.4"
+yacs = "==0.1.8"
+timm = "==0.9.12"
+# WiLoR(手部备选,端到端无 detectron2/mmcv)
+roma = "*"
+huggingface_hub = "*"
+# 训练框架 / 配置
+lightning = ">=2.4,<3"   # 原钉 2.3.0 卡 packaging<25,与宿主 packaging26.2 冲突;2.4+ 取消上限
+hydra-core = "==1.3.0"
+"hydra-colorlog" = "==1.2.0"
+hydra_zen = "==0.16.0"
+pyrootutils = "==1.0.4"
+webdataset = "==0.2.86"
+# 通用
+scipy = "==1.15.3"
+"opencv-python" = "==4.11.0.86"
+imageio = "==2.34.1"
+av = "==13.0.0"
+"scikit-image" = "==0.25.2"
+matplotlib = "==3.10.7"
+pandas = "==2.3.3"
+einops = "==0.8.2"
+joblib = "==1.5.3"
+"json-tricks" = "==3.17.3"
+munkres = "==1.1.4"
+tensorboardX = "==2.6.5"
+"ffmpeg-python" = "==0.2.0"
+gdown = "==6.0.0"
+rich = "==14.2.0"
+termcolor = "==3.2.0"
+
+# 注:chumpy/mmcv/xtcocotools/cython_bbox 全部移到 post_install.py 后装,
+# 故此处不再需要 no-build-isolation(pixi 阶段已无源码构建包)。

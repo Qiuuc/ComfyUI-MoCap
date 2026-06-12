@@ -1,0 +1,5 @@
+# ComfyUI-Mocap 主环境依赖(ComfyUI 端的节点壳子,轻量)
+# 重活在 comfy-env 隔离环境里(见 comfy-env-root.toml)。
+comfy-env==0.3.89
+Pillow>=9.0.0
+numpy>=1.21.0

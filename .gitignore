@@ -1,0 +1,19 @@
+# 隔离环境(comfy-env / pixi 建,体积大,install.py 自动重建)
+.ce/
+
+# 源码仓库 + 权重(GVHMR/HaMeR 共 ~15G;install.py / download_weights.py / setup_hamer.py
+# 自动提供,不入库。注册权重 SMPL/SMPL-X/MANO 由用户注册自备)
+mocap/
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# 运行时日志 / 临时
+*.log
+.DS_Store

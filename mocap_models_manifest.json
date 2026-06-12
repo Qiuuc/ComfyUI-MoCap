@@ -1,0 +1,28 @@
+{
+  "base": "mocap",
+  "note": "视频转 3D 动作(Mocap)所需的代码内权重。路径相对 ComfyUI-Noctyra/mocap/。license=true 的受 MPI 控制、禁止再分发,须自行注册下载。",
+  "items": [
+    {"path": "GVHMR/inputs/checkpoints/gvhmr", "type": "dir", "size": "156MB", "license": false,
+     "source": "GVHMR 官方权重(github.com/zju3dv/GVHMR)/ 镜像 hf-mirror.com", "note": "GVHMR 主干"},
+    {"path": "GVHMR/inputs/checkpoints/hmr2", "type": "dir", "size": "2.5GB", "license": false,
+     "source": "GVHMR 官方权重 / hf-mirror.com", "note": "HMR2.0 初始化器"},
+    {"path": "GVHMR/inputs/checkpoints/vitpose", "type": "dir", "size": "2.4GB", "license": false,
+     "source": "GVHMR 官方权重 / hf-mirror.com", "note": "ViTPose(身体 2D)"},
+    {"path": "GVHMR/inputs/checkpoints/yolo", "type": "dir", "size": "131MB", "license": false,
+     "source": "GVHMR 官方权重 / hf-mirror.com", "note": "YOLO 人体检测"},
+    {"path": "GVHMR/inputs/checkpoints/dpvo", "type": "dir", "size": "14MB", "license": false,
+     "source": "GVHMR 官方权重 / hf-mirror.com", "note": "DPVO 相机轨迹"},
+    {"path": "GVHMR/inputs/checkpoints/body_models/smpl/SMPL_NEUTRAL.pkl", "type": "file", "license": true,
+     "source": "https://smpl.is.tue.mpg.de (注册下载)", "note": "SMPL 模型,禁止再分发"},
+    {"path": "GVHMR/inputs/checkpoints/body_models/smplx/SMPLX_NEUTRAL.npz", "type": "file", "license": true,
+     "source": "https://smpl-x.is.tue.mpg.de (注册下载)", "note": "SMPL-X 模型;GLB 导出也用它"},
+    {"path": "hamer/_DATA/hamer_ckpts", "type": "dir", "size": "2.5GB", "license": false,
+     "source": "HaMeR 官方(github.com/geopavlakos/hamer,首次运行可自动下)/ hf-mirror.com", "note": "HaMeR 主干(手部)"},
+    {"path": "hamer/_DATA/vitpose_ckpts", "type": "dir", "size": "3.6GB", "license": false,
+     "source": "HaMeR 官方 / hf-mirror.com", "note": "ViTPose+ huge(手部关键点)"},
+    {"path": "hamer/_DATA/detectron2", "type": "dir", "size": "2.6GB", "license": false,
+     "source": "HaMeR 官方 / hf-mirror.com", "note": "detectron2 ViTDet(手部前置检测)"},
+    {"path": "hamer/_DATA/data/mano/MANO_RIGHT.pkl", "type": "file", "license": true,
+     "source": "https://mano.is.tue.mpg.de (注册下载)", "note": "MANO 右手模型,禁止再分发"}
+  ]
+}
